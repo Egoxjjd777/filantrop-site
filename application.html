@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заявка на премию «Филантроп» — Подача онлайн заявки</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="styles/application.css">
+</head>
+<body>
+  <div class="app-container">
+    <!-- Header -->
+    <header class="app-header">
+      <div class="header-content">
+        <a href="../index.html" class="back-link">
+          <i class="fas fa-arrow-left"></i>
+          <span>На главную</span>
+        </a>
+        <div class="logo">
+          <div class="logo-icon">Ф</div>
+          <div class="logo-text">
+            <h1>ФИЛАНТРОП</h1>
+            <span>Благотворительный фонд</span>
+          </div>
+        </div>
+        <div class="header-title">
+          <h2>XIV Международная премия «Филантроп»</h2>
+          <p>Электронная форма заявки</p>
+        </div>
+      </div>
+    </header>
+
+    <!-- Progress Steps -->
+    <div class="progress-container">
+      <div class="progress-steps">
+        <div class="step active" data-step="1">
+          <div class="step-circle">1</div>
+          <span class="step-label">Заявка</span>
+        </div>
+        <div class="step" data-step="2">
+          <div class="step-circle">2</div>
+          <span class="step-label">Анкета</span>
+        </div>
+        <div class="step" data-step="3">
+          <div class="step-circle">3</div>
+          <span class="step-label">Фото</span>
+        </div>
+        <div class="step" data-step="4">
+          <div class="step-circle">4</div>
+          <span class="step-label">Автобиография</span>
+        </div>
+        <div class="step" data-step="5">
+          <div class="step-circle">5</div>
+          <span class="step-label">Рекомендация</span>
+        </div>
+        <div class="step" data-step="6">
+          <div class="step-circle">6</div>
+          <span class="step-label">Материалы</span>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="progress-fill" style="width: 16.67%"></div>
+      </div>
+    </div>
+
+    <!-- Main Form -->
+    <main class="form-container">
+      <form id="applicationForm" class="application-form" novalidate>
+        
+        <!-- Section 1: Заявка -->
+        <section class="form-section active" id="section1">
+          <h3 class="section-title"><span class="step-number">1</span> Заявка</h3>
+          <p class="section-description">Основная информация об участнике</p>
+          
+          <div class="form-group">
+            <label class="form-label">
+              Тип заявителя <span class="required">*</span>
+            </label>
+            <div class="radio-group">
+              <label class="radio-card">
+                <input type="radio" name="applicantType" value="individual" checked>
+                <span class="radio-content">
+                  <i class="fas fa-user"></i>
+                  <span>Индивидуальный участник</span>
+                </span>
+              </label>
+              <label class="radio-card">
+                <input type="radio" name="applicantType" value="collective">
+                <span class="radio-content">
+                  <i class="fas fa-users"></i>
+                  <span>Творческий коллектив</span>
+                </span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="fullName" class="form-label">
+              ФИО участника / Название коллектива <span class="required">*</span>
+            </label>
+            <input type="text" id="fullName" name="fullName" required 
+                   placeholder="Иванов Иван Иванович / Название коллектива"
+                   class="form-input">
+            <span class="error-message" id="fullNameError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="nomination" class="form-label">
+              Номинация <span class="required">*</span>
+            </label>
+            <select id="nomination" name="nomination" required class="form-input">
+              <option value="">Выберите номинацию</option>
+              <option value="performing">Исполнительское искусство</option>
+              <option value="visual">Изобразительное искусство</option>
+              <option value="literary">Литературное творчество</option>
+            </select>
+            <span class="error-message" id="nominationError"></span>
+          </div>
+
+          <div class="form-group" id="subnominationsGroup">
+            <label class="form-label">
+              Подноминации <span class="required">*</span>
+              <span class="hint">(можно выбрать несколько)</span>
+            </label>
+            <div class="checkbox-group" id="subnominationsContainer">
+              <!-- Dynamically populated -->
+            </div>
+            <span class="error-message" id="subnominationsError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="applicationDate" class="form-label">
+              Дата заявки <span class="required">*</span>
+            </label>
+            <input type="date" id="applicationDate" name="applicationDate" required class="form-input">
+            <span class="error-message" id="applicationDateError"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Электронная подпись <span class="required">*</span>
+            </label>
+            <div class="file-upload" data-accept=".pdf,.jpg,.png" data-max="5">
+              <div class="upload-area">
+                <i class="fas fa-signature upload-icon"></i>
+                <p class="upload-text">Перетащите файл подписи сюда или нажмите для выбора</p>
+                <p class="upload-hint">PDF, JPG, PNG до 5 МБ</p>
+              </div>
+              <input type="file" class="file-input" accept=".pdf,.jpg,.png" required>
+              <div class="file-list"></div>
+            </div>
+            <span class="error-message" id="signatureError"></span>
+          </div>
+        </section>
+
+        <!-- Section 2: Анкета -->
+        <section class="form-section" id="section2">
+          <h3 class="section-title"><span class="step-number">2</span> Анкета участника</h3>
+          <p class="section-description">Заполните все поля анкеты</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="birthDate" class="form-label">Дата рождения <span class="required">*</span></label>
+              <input type="date" id="birthDate" name="birthDate" required class="form-input">
+              <span class="error-message" id="birthDateError"></span>
+            </div>
+            <div class="form-group">
+              <label for="phone" class="form-label">Телефон <span class="required">*</span></label>
+              <input type="tel" id="phone" name="phone" required placeholder="+7 (___) ___-__-__" class="form-input">
+              <span class="error-message" id="phoneError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="email" class="form-label">Email <span class="required">*</span></label>
+            <input type="email" id="email" name="email" required placeholder="example@email.ru" class="form-input">
+            <span class="error-message" id="emailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="address" class="form-label">Почтовый адрес <span class="required">*</span></label>
+            <textarea id="address" name="address" rows="3" required placeholder="Индекс, город, улица, дом, квартира" class="form-input"></textarea>
+            <span class="error-message" id="addressError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="education" class="form-label">Образование <span class="required">*</span></label>
+            <select id="education" name="education" required class="form-input">
+              <option value="">Выберите образование</option>
+              <option value="secondary">Среднее</option>
+              <option value="specialized">Среднее специальное</option>
+              <option value="higher">Высшее</option>
+              <option value="incomplete">Неполное высшее</option>
+            </select>
+            <span class="error-message" id="educationError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="occupation" class="form-label">Место работы/учебы <span class="required">*</span></label>
+            <input type="text" id="occupation" name="occupation" required placeholder="Название организации или учебного заведения" class="form-input">
+            <span class="error-message" id="occupationError"></span>
+          </div>
+
+          <div class="form-group">
+            <label for="disabilityGroup" class="form-label">Группа инвалидности <span class="required">*</span></label>
+            <select id="disabilityGroup" name="disabilityGroup" required class="form-input">
+              <option value="">Выберите группу</option>
+              <option value="1">I группа</option>
+              <option value="2">II группа</option>
+              <option value="3">III группа</option>
+              <option child="child">Ребёнок-инвалид</option>
+              <option value="none">Не установлена</option>
+            </select>
+            <span class="error-message" id="disabilityGroupError"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Загрузка справки ВТЭК <span class="required">*</span>
+            </label>
+            <div class="file-upload" data-accept=".pdf,.jpg,.png" data-max="10">
+              <div class="upload-area">
+                <i class="fas fa-file-medical upload-icon"></i>
+                <p class="upload-text">Перетащите файл справки ВТЭК сюда или нажмите для выбора</p>
+                <p class="upload-hint">PDF, JPG, PNG до 10 МБ</p>
+              </div>
+              <input type="file" class="file-input" accept=".pdf,.jpg,.png" required>
+              <div class="file-list"></div>
+            </div>
+            <span class="error-message" id="vtekError"></span>
+          </div>
+        </section>
+
+        <!-- Section 3: Фотография -->
+        <section class="form-section" id="section3">
+          <h3 class="section-title"><span class="step-number">3</span> Фотография участника</h3>
+          <p class="section-description">Загрузите портретное фото для участия в премии</p>
+
+          <div class="form-group">
+            <label class="form-label">
+              Портретное фото <span class="required">*</span>
+            </label>
+            <div class="file-upload" data-accept=".jpg,.jpeg,.png" data-max="10">
+              <div class="upload-area">
+                <i class="fas fa-user-circle upload-icon"></i>
+                <p class="upload-text">Перетащите фото сюда или нажмите для выбора</p>
+                <p class="upload-hint">JPG, PNG до 10 МБ, мин. 800×1000px</p>
+              </div>
+              <input type="file" class="file-input" accept=".jpg,.jpeg,.png" required>
+              <div class="file-list"></div>
+            </div>
+            <div class="photo-preview" id="photoPreview"></div>
+            <span class="error-message" id="photoError"></span>
+          </div>
+
+          <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong>Требования к фотографии:</strong>
+              <ul>
+                <li>Портретное изображение в хорошем качестве</li>
+                <li>Минимальный размер: 800×1000 пикселей</li>
+                <li>Формат: JPG или PNG</li>
+                <li>Максимальный размер файла: 10 МБ</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 4: Автобиография -->
+        <section class="form-section" id="section4">
+          <h3 class="section-title"><span class="step-number">4</span> Автобиография</h3>
+          <p class="section-description">Расскажите о себе и своём творческом пути</p>
+
+          <div class="form-group">
+            <label for="biography" class="form-label">
+              Текст автобиографии <span class="required">*</span>
+            </label>
+            <textarea id="biography" name="biography" rows="10" required 
+                      placeholder="Напишите автобиографию (минимум 500 символов)..."
+                      class="form-input"></textarea>
+            <div class="char-counter">
+              <span id="charCount">0</span> / 500 символов (минимум)
+            </div>
+            <span class="error-message" id="biographyError"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">Дополнительные материалы</label>
+            <div class="file-upload multiple" data-accept=".pdf,.doc,.docx,.txt" data-max="20">
+              <div class="upload-area">
+                <i class="fas fa-file-alt upload-icon"></i>
+                <p class="upload-text">Перетащите файлы или нажмите для выбора</p>
+                <p class="upload-hint">PDF, DOC, DOCX, TXT до 20 МБ каждый</p>
+              </div>
+              <input type="file" class="file-input" accept=".pdf,.doc,.docx,.txt" multiple>
+              <div class="file-list"></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Section 5: Рекомендация -->
+        <section class="form-section" id="section5">
+          <h3 class="section-title"><span class="step-number">5</span> Рекомендация</h3>
+          <p class="section-description">Информация об организации, рекомендующей участника</p>
+
+          <div class="form-group">
+            <label for="orgName" class="form-label">
+              Название организации <span class="required">*</span>
+            </label>
+            <input type="text" id="orgName" name="orgName" required 
+                   placeholder="Полное название организации"
+                   class="form-input">
+            <span class="error-message" id="orgNameError"></span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="orgHead" class="form-label">
+                Руководитель организации <span class="required">*</span>
+              </label>
+              <input type="text" id="orgHead" name="orgHead" required 
+                     placeholder="ФИО руководителя"
+                     class="form-input">
+              <span class="error-message" id="orgHeadError"></span>
+            </div>
+            <div class="form-group">
+              <label for="orgPhone" class="form-label">
+                Телефон организации <span class="required">*</span>
+              </label>
+              <input type="tel" id="orgPhone" name="orgPhone" required 
+                     placeholder="+7 (___) ___-__-__"
+                     class="form-input">
+              <span class="error-message" id="orgPhoneError"></span>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="orgEmail" class="form-label">
+              Email организации <span class="required">*</span>
+            </label>
+            <input type="email" id="orgEmail" name="orgEmail" required 
+                   placeholder="org@example.ru"
+                   class="form-input">
+            <span class="error-message" id="orgEmailError"></span>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label">
+              Рекомендательное письмо <span class="required">*</span>
+            </label>
+            <div class="file-upload" data-accept=".pdf,.doc,.docx" data-max="10">
+              <div class="upload-area">
+                <i class="fas fa-file-signature upload-icon"></i>
+                <p class="upload-text">Перетащите рекомендательное письмо или нажмите для выбора</p>
+                <p class="upload-hint">PDF, DOC, DOCX до 10 МБ</p>
+              </div>
+              <input type="file" class="file-input" accept=".pdf,.doc,.docx" required>
+              <div class="file-list"></div>
+            </div>
+            <span class="error-message" id="recommendationError"></span>
+          </div>
+        </section>
+
+        <!-- Section 6: Конкурсные материалы -->
+        <section class="form-section" id="section6">
+          <h3 class="section-title"><span class="step-number">6</span> Конкурсные материалы</h3>
+          <p class="section-description">Загрузите работы для участия в конкурсе</p>
+
+          <div class="info-box">
+            <i class="fas fa-info-circle"></i>
+            <div>
+              <strong>Требования к материалам:</strong>
+              <p id="materialsRequirements">Выберите номинацию, чтобы увидеть требования</p>
+            </div>
+          </div>
+
+          <div id="materialsFields" class="materials-fields">
+            <!-- Dynamically populated based on nomination -->
+          </div>
+        </section>
+
+        <!-- Navigation Buttons -->
+        <div class="form-navigation">
+          <button type="button" class="btn btn-prev" id="prevBtn" disabled>
+            <i class="fas fa-arrow-left"></i> Назад
+          </button>
+          <button type="button" class="btn btn-next" id="nextBtn">
+            Далее <i class="fas fa-arrow-right"></i>
+          </button>
+          <button type="submit" class="btn btn-submit" id="submitBtn" style="display: none;">
+            <i class="fas fa-paper-plane"></i> Отправить заявку
+          </button>
+        </div>
+
+        <!-- Error Summary -->
+        <div class="error-summary" id="errorSummary" style="display: none;">
+          <h4><i class="fas fa-exclamation-triangle"></i> Ошибки в форме</h4>
+          <ul id="errorList"></ul>
+        </div>
+      </form>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer">
+      <div class="footer-content">
+        <p>© 2026 БФ «Филантроп». Все права защищены.</p>
+        <div class="footer-links">
+          <a href="#"><i class="fas fa-phone"></i> +7 (917) 557-69-90</a>
+          <a href="#"><i class="fas fa-envelope"></i> prize@filantrop.ru</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script src="scripts/application.js"></script>
+</body>
+</html>

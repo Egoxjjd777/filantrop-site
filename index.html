@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Благотворительный фонд «Филантроп» поддерживает людей с инвалидностью в сфере культуры и искусства.">
+  <meta name="keywords" content="благотворительный фонд, филантроп, инвалидность, культура, искусство, премия, реабилитация">
+  
+  <title>БФ «Филантроп» — Поддержка людей с инвалидностью в сфере культуры и искусства</title>
+  
+  <!-- Preconnect to Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="styles/main.css">
+</head>
+<body>
+  <!-- Skip link for accessibility -->
+  <a href="#main-content" class="skip-link">Перейти к основному контенту</a>
+
+  <!-- Header -->
+  <header class="header" role="banner">
+    <!-- Top bar -->
+    <div class="top-bar" role="navigation" aria-label="Верхняя панель">
+      <div class="container-custom">
+        <button 
+          id="accessibility-toggle"
+          class="accessibility-btn" 
+          aria-pressed="false"
+          aria-label="Версия для слабовидящих"
+        >
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M2 12s3-7 10-7 10 7 10 7-3 7-10 7-10-7-10-7Z"/>
+            <circle cx="12" cy="12" r="3"/>
+          </svg>
+          <span>Версия для слабовидящих</span>
+        </button>
+        
+        <div class="search-box">
+          <label for="site-search" class="visually-hidden">Поиск по сайту</label>
+          <input type="search" id="site-search" placeholder="Поиск..." aria-label="Поиск по сайту">
+          <button type="submit" aria-label="Найти">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="11" cy="11" r="8"/>
+              <path d="m21 21-4.3-4.3"/>
+            </svg>
+          </button>
+        </div>
+
+        <div class="languages" role="group" aria-label="Языки">
+          <button class="active" aria-current="true">RU</button>
+          <span aria-hidden="true">|</span>
+          <button>EN</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Contact bar -->
+    <div class="contact-bar" role="complementary" aria-label="Контактная информация">
+      <div class="container-custom">
+        <a href="tel:+79175576990" class="contact-phone">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
+          </svg>
+          <span>+7 (917) 557-69-90</span>
+        </a>
+        <a href="mailto:info@filantrop.ru" class="contact-email">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+            <rect width="20" height="16" x="2" y="4" rx="2"/>
+            <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/>
+          </svg>
+          <span>info@filantrop.ru</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Main navigation -->
+    <nav class="main-nav" role="navigation" aria-label="Главное меню">
+      <div class="container-custom">
+        <a href="/" class="logo" aria-label="БФ Филантроп — на главную">
+          <div class="logo-icon">Ф</div>
+          <div class="logo-text">
+            <span class="logo-name">ФИЛАНТРОП</span>
+            <span class="logo-subtitle">Благотворительный фонд</span>
+          </div>
+        </a>
+
+        <!-- Desktop menu -->
+        <ul class="nav-list desktop-only">
+          <li class="nav-item has-dropdown">
+            <a href="/about" class="nav-link" aria-haspopup="true">
+              О фонде
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </a>
+            <ul class="dropdown" role="menu">
+              <li><a href="/about" role="menuitem">О фонде</a></li>
+              <li><a href="/about/documents" role="menuitem">Документы</a></li>
+              <li><a href="/about/programs" role="menuitem">Программы</a></li>
+              <li><a href="/about/team" role="menuitem">Команда</a></li>
+              <li><a href="/about/awards" role="menuitem">Награды</a></li>
+            </ul>
+          </li>
+          <li class="nav-item has-dropdown">
+            <a href="/prize" class="nav-link" aria-haspopup="true">
+              Премия
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </a>
+            <ul class="dropdown" role="menu">
+              <li><a href="/prize" role="menuitem">О премии</a></li>
+              <li><a href="/prize/apply" role="menuitem">Подать заявку</a></li>
+              <li><a href="/prize/jury" role="menuitem">Жюри</a></li>
+              <li><a href="/prize/nominations" role="menuitem">Номинации</a></li>
+              <li><a href="/prize/laureates" role="menuitem">Лауреаты</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/news" class="nav-link">Новости</a></li>
+          <li class="nav-item has-dropdown">
+            <a href="/services" class="nav-link" aria-haspopup="true">
+              Услуги
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </a>
+            <ul class="dropdown" role="menu">
+              <li><a href="/services/employment" role="menuitem">Трудоустройство</a></li>
+              <li><a href="/services/printing" role="menuitem">Полиграфия</a></li>
+              <li><a href="/services/design" role="menuitem">Дизайн</a></li>
+              <li><a href="/services/transport" role="menuitem">Транспорт</a></li>
+              <li><a href="/services/events" role="menuitem">Мероприятия</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a href="/museum" class="nav-link">Музей</a></li>
+          <li class="nav-item"><a href="/partners" class="nav-link">Партнёрам</a></li>
+          <li class="nav-item"><a href="/contacts" class="nav-link">Контакты</a></li>
+        </ul>
+
+        <a href="/donate" class="donate-btn desktop-only">Пожертвовать</a>
+
+        <!-- Mobile menu toggle -->
+        <button class="mobile-toggle" aria-label="Открыть меню" aria-expanded="false" aria-controls="mobile-menu">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="4" x2="20" y1="12" y2="12"/>
+            <line x1="4" x2="20" y1="6" y2="6"/>
+            <line x1="4" x2="20" y1="18" y2="18"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile menu -->
+      <div id="mobile-menu" class="mobile-menu" role="dialog" aria-label="Мобильное меню" hidden>
+        <div class="mobile-menu-header">
+          <span>МЕНЮ</span>
+          <button class="mobile-menu-close" aria-label="Закрыть меню">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M18 6 6 18"/>
+              <path d="m6 6 12 12"/>
+            </svg>
+          </button>
+        </div>
+        <ul class="mobile-nav-list">
+          <li><a href="/about">О фонде</a></li>
+          <li><a href="/prize">Премия</a></li>
+          <li><a href="/news">Новости</a></li>
+          <li><a href="/services">Услуги</a></li>
+          <li><a href="/museum">Музей</a></li>
+          <li><a href="/partners">Партнёрам</a></li>
+          <li><a href="/contacts">Контакты</a></li>
+          <li class="mobile-donate"><a href="/donate">Пожертвовать</a></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <!-- Main content -->
+  <main id="main-content">
+    <!-- Hero Section -->
+    <section class="hero">
+      <div class="hero-content">
+        <h1 class="hero-title">Благотворительный фонд «Филантроп»</h1>
+        <p class="hero-subtitle">Поддерживаем людей с инвалидностью в сфере культуры и искусства</p>
+        <div class="hero-actions">
+          <a href="application.html" class="btn btn-primary btn-large">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+              <polyline points="14 2 14 8 20 8"/>
+              <line x1="12" y1="18" x2="12" y2="12"/>
+              <line x1="9" y1="15" x2="15" y2="15"/>
+            </svg>
+            Подать заявку на премию онлайн
+          </a>
+          <a href="/partners" class="btn btn-secondary">Стать партнёром</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- News Section -->
+    <section class="section section-news" aria-labelledby="news-heading">
+      <div class="container-custom">
+        <div class="section-header">
+          <h2 id="news-heading" class="section-title">📰 Новости и события</h2>
+          <a href="/news" class="view-all">
+            Все новости
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="news-grid">
+          <article class="news-card">
+            <a href="/news/1">
+              <div class="news-image">📰</div>
+              <div class="news-content">
+                <div class="news-meta">
+                  <time datetime="2026-03-25">25 марта 2026</time>
+                  <span class="news-category">Премия</span>
+                </div>
+                <h3 class="news-title">Открыт приём заявок на премию «Филантроп» 2026</h3>
+                <p class="news-excerpt">Благотворительный фонд «Филантроп» объявляет о начале приёма заявок на участие в ежегодной премии...</p>
+                <span class="read-more">Читать далее →</span>
+              </div>
+            </a>
+          </article>
+          <article class="news-card">
+            <a href="/news/2">
+              <div class="news-image">🎉</div>
+              <div class="news-content">
+                <div class="news-meta">
+                  <time datetime="2026-03-08">8 марта 2026</time>
+                  <span class="news-category">Праздники</span>
+                </div>
+                <h3 class="news-title">Поздравляем с Международным женским днём!</h3>
+                <p class="news-excerpt">Коллектив фонда «Филантроп» поздравляет всех женщин с прекрасным праздником весны...</p>
+                <span class="read-more">Читать далее →</span>
+              </div>
+            </a>
+          </article>
+          <article class="news-card">
+            <a href="/news/3">
+              <div class="news-image">🎨</div>
+              <div class="news-content">
+                <div class="news-meta">
+                  <time datetime="2026-03-01">1 марта 2026</time>
+                  <span class="news-category">Музей</span>
+                </div>
+                <h3 class="news-title">Выставка в музее «Равновесие»: новые поступления</h3>
+                <p class="news-excerpt">В музее «Равновесие» открылась выставка новых работ наших художников...</p>
+                <span class="read-more">Читать далее →</span>
+              </div>
+            </a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Prize Section -->
+    <section class="section section-prize" aria-labelledby="prize-heading">
+      <div class="container-custom">
+        <div class="section-header-center">
+          <h2 id="prize-heading" class="section-title">🏆 Премия «Филантроп»</h2>
+          <p class="section-subtitle">Всероссийская премия для людей с инвалидностью в сфере культуры и искусства</p>
+        </div>
+        
+        <!-- Organizers -->
+        <div class="organizers">
+          <h3 class="subsection-title">Организаторы</h3>
+          <div class="organizers-grid">
+            <div class="organizer-card">🏛️<br>Правительство РФ</div>
+            <div class="organizer-card">🏢<br>Торгово-промышленная палата</div>
+            <div class="organizer-card">🎭<br>Министерство культуры</div>
+            <div class="organizer-card">👥<br>Общественная палата</div>
+          </div>
+        </div>
+
+        <!-- Nominations -->
+        <div class="nominations">
+          <h3 class="subsection-title">Номинации</h3>
+          <div class="nominations-grid">
+            <div class="nomination-card">
+              <div class="nomination-icon">🎭</div>
+              <h4>Исполнительское искусство</h4>
+              <p>Вокальное, хореографическое, театральное, цирковое искусство</p>
+            </div>
+            <div class="nomination-card">
+              <div class="nomination-icon">🎨</div>
+              <h4>Изобразительное искусство</h4>
+              <p>Живопись, графика, скульптура, декоративно-прикладное искусство</p>
+            </div>
+            <div class="nomination-card">
+              <div class="nomination-icon">📚</div>
+              <h4>Литературное творчество</h4>
+              <p>Проза, поэзия, драматургия</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="section-actions">
+          <a href="/prize/apply" class="btn btn-primary">Подать заявку</a>
+          <a href="/prize" class="btn btn-secondary">Узнать о премии</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Museum Section -->
+    <section class="section section-museum" aria-labelledby="museum-heading">
+      <div class="container-custom">
+        <div class="section-header">
+          <h2 id="museum-heading" class="section-title">🖼️ Музей «Равновесие»</h2>
+          <a href="/museum" class="view-all">
+            Вся галерея
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <p class="museum-description">Уникальная коллекция произведений искусства, созданных людьми с инвалидностью.</p>
+        <div class="artworks-grid">
+          <div class="artwork-card">
+            <div class="artwork-image">🎨</div>
+            <div class="artwork-info">
+              <h4>Подсолнухи в вазе</h4>
+              <p>Иван Петров, 2024</p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="artwork-image">🌸</div>
+            <div class="artwork-info">
+              <h4>Цветочная композиция</h4>
+              <p>Мария Сидорова, 2023</p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="artwork-image">❄️</div>
+            <div class="artwork-info">
+              <h4>Зимний пейзаж</h4>
+              <p>Алексей Козлов, 2024</p>
+            </div>
+          </div>
+          <div class="artwork-card">
+            <div class="artwork-image">👤</div>
+            <div class="artwork-info">
+              <h4>Портрет матери</h4>
+              <p>Елена Новикова, 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="section section-services" aria-labelledby="services-heading">
+      <div class="container-custom">
+        <div class="section-header">
+          <h2 id="services-heading" class="section-title">🛎️ Услуги фонда</h2>
+          <a href="/services" class="view-all">
+            Все услуги
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="services-grid">
+          <div class="service-card">
+            <div class="service-icon">👥</div>
+            <h3>Трудоустройство</h3>
+            <p>Помощь в поиске работы для людей с инвалидностью</p>
+            <a href="/services/employment" class="service-link">Подробнее →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🖨️</div>
+            <h3>Полиграфия</h3>
+            <p>Полный спектр полиграфических услуг</p>
+            <a href="/services/printing" class="service-link">Подробнее →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🎨</div>
+            <h3>Дизайн</h3>
+            <p>Разработка дизайна любой сложности</p>
+            <a href="/services/design" class="service-link">Подробнее →</a>
+          </div>
+          <div class="service-card">
+            <div class="service-icon">🚐</div>
+            <h3>Транспорт</h3>
+            <p>Доступное такси для людей с инвалидностью</p>
+            <a href="/services/transport" class="service-link">Подробнее →</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="section section-contacts" aria-labelledby="contact-heading">
+      <div class="container-custom">
+        <div class="section-header">
+          <h2 id="contact-heading" class="section-title">📍 Контакты</h2>
+          <a href="/contacts" class="view-all">
+            Все контакты
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M5 12h14"/>
+              <path d="m12 5 7 7-7 7"/>
+            </svg>
+          </a>
+        </div>
+        <div class="contacts-grid">
+          <div class="contact-info">
+            <div class="contact-item">
+              <div class="contact-icon">📍</div>
+              <div>
+                <strong>Адрес</strong>
+                <p>101000, Москва, ул. Маросейка, д. 4</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">🕐</div>
+              <div>
+                <strong>График работы</strong>
+                <p>Пн-Пт: 10:00 - 18:00 (МСК)<br>Сб-Вс: Выходной</p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">📞</div>
+              <div>
+                <strong>Телефон</strong>
+                <p><a href="tel:+79175576990">+7 (917) 557-69-90</a></p>
+              </div>
+            </div>
+            <div class="contact-item">
+              <div class="contact-icon">✉️</div>
+              <div>
+                <strong>Email</strong>
+                <p><a href="mailto:info@filantrop.ru">info@filantrop.ru</a></p>
+              </div>
+            </div>
+          </div>
+          <div class="contact-map">
+            <div class="map-placeholder">
+              🗺️<br>Интерактивная карта<br>
+              <a href="https://yandex.ru/maps" target="_blank" rel="noopener" class="btn btn-primary btn-sm">Открыть в Яндекс.Картах</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Donate CTA -->
+    <section class="section section-donate" aria-labelledby="donate-heading">
+      <div class="container-custom">
+        <h2 id="donate-heading" class="donate-title">Поддержите фонд «Филантроп»</h2>
+        <p class="donate-subtitle">Ваше пожертвование поможет людям с инвалидностью раскрыть свой творческий потенциал</p>
+        <div class="donate-actions">
+          <a href="/donate" class="btn btn-accent">Пожертвовать сейчас</a>
+          <a href="/about" class="btn btn-outline">Узнать о фонде</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer" role="contentinfo">
+    <div class="footer-main">
+      <div class="container-custom">
+        <div class="footer-grid">
+          <div class="footer-col footer-col-wide">
+            <a href="/" class="footer-logo">
+              <div class="logo-icon">Ф</div>
+              <div>
+                <span class="logo-name">ФИЛАНТРОП</span>
+                <span class="logo-subtitle">Благотворительный фонд</span>
+              </div>
+            </a>
+            <div class="footer-contacts">
+              <a href="tel:+79175576990" class="footer-contact">📞 +7 (917) 557-69-90</a>
+              <a href="mailto:info@filantrop.ru" class="footer-contact">✉️ info@filantrop.ru</a>
+              <div class="footer-contact">📍 101000, Москва, ул. Маросейка, д. 4</div>
+              <div class="footer-contact">🕐 Пн-Пт: 10:00 - 18:00 (МСК)</div>
+            </div>
+            <div class="footer-social">
+              <a href="#" aria-label="ВКонтакте">VK</a>
+              <a href="#" aria-label="Telegram">TG</a>
+              <a href="#" aria-label="YouTube">YT</a>
+            </div>
+          </div>
+          <div class="footer-col">
+            <h4>О фонде</h4>
+            <ul>
+              <li><a href="/about">О фонде</a></li>
+              <li><a href="/about/documents">Документы</a></li>
+              <li><a href="/about/programs">Программы</a></li>
+              <li><a href="/about/team">Команда</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Премия</h4>
+            <ul>
+              <li><a href="/prize">О премии</a></li>
+              <li><a href="/prize/apply">Подать заявку</a></li>
+              <li><a href="/prize/jury">Жюри</a></li>
+              <li><a href="/prize/nominations">Номинации</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4>Услуги</h4>
+            <ul>
+              <li><a href="/services/employment">Трудоустройство</a></li>
+              <li><a href="/services/printing">Полиграфия</a></li>
+              <li><a href="/services/design">Дизайн</a></li>
+              <li><a href="/services/transport">Транспорт</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div class="container-custom">
+        <div class="footer-bottom-content">
+          <span>© <span id="current-year"></span> БФ «Филантроп». Все права защищены.</span>
+          <div class="footer-links">
+            <a href="/privacy">Политика конфиденциальности</a>
+            <a href="/sitemap">Карта сайта</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="scripts/main.js"></script>
+</body>
+</html>
