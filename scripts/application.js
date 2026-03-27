@@ -1,5 +1,6 @@
 /**
  * ЗАЯВКА НА ПРЕМИЮ «ФИЛАНТРОП» — JAVASCRIPT
+ * Исправленная версия: свободная навигация + исправленный телефон
  */
 
 (function() {
@@ -93,12 +94,30 @@
     // Initialize nomination change handler
     initNominationHandler();
 
-    // Initialize radio/checkbox handlers
+    // Initialize input handlers
     initInputHandlers();
+
+    // Initialize step navigation clicks
+    initStepNavigation();
 
     // Update UI
     updateNavigation();
     updateProgress();
+  }
+
+  // ============================================
+  // STEP NAVIGATION (CLICK ON STEPS)
+  // ============================================
+  function initStepNavigation() {
+    document.querySelectorAll('.step').forEach(stepEl => {
+      stepEl.addEventListener('click', () => {
+        const step = parseInt(stepEl.dataset.step);
+        if (step && step !== currentStep) {
+          goToStep(step);
+        }
+      });
+      stepEl.style.cursor = 'pointer';
+    });
   }
 
   // ============================================
@@ -111,10 +130,9 @@
   });
 
   nextBtn.addEventListener('click', () => {
-    if (validateCurrentStep()) {
-      if (currentStep < totalSteps) {
-        goToStep(currentStep + 1);
-      }
+    // Теперь можно переходить дальше без валидации
+    if (currentStep < totalSteps) {
+      goToStep(currentStep + 1);
     }
   });
 
@@ -138,7 +156,7 @@
     document.getElementById(`section${currentStep}`).classList.add('active');
     document.querySelector(`.step[data-step="${currentStep}"]`).classList.add('active');
 
-    // Mark completed steps
+    // Mark completed steps (steps that were visited)
     for (let i = 1; i < currentStep; i++) {
       document.querySelector(`.step[data-step="${i}"]`).classList.add('completed');
     }
@@ -166,87 +184,63 @@
   }
 
   // ============================================
-  // VALIDATION
+  // VALIDATION (ONLY ON SUBMIT)
   // ============================================
-  function validateCurrentStep() {
-    const section = document.getElementById(`section${currentStep}`);
-    let isValid = true;
-    const errors = [];
-
-    // Get all required fields in current section
-    const requiredInputs = section.querySelectorAll('[required]');
-    
-    requiredInputs.forEach(input => {
-      if (!validateField(input)) {
-        isValid = false;
-        errors.push(getFieldLabel(input) + ' не заполнено');
-      }
-    });
-
-    // Special validations
-    if (currentStep === 1) {
-      const subnominations = section.querySelectorAll('input[type="checkbox"]:checked');
-      if (subnominations.length === 0) {
-        isValid = false;
-        errors.push('Выберите хотя бы одну подноминацию');
-        document.getElementById('subnominationsError').textContent = 'Выберите хотя бы одну подноминацию';
-      } else {
-        document.getElementById('subnominationsError').textContent = '';
-      }
-    }
-
-    if (currentStep === 4) {
-      const bio = document.getElementById('biography');
-      if (bio && bio.value.length < 500) {
-        isValid = false;
-        errors.push('Автобиография должна содержать не менее 500 символов');
-      }
-    }
-
-    if (!isValid) {
-      showSectionErrors(errors);
-    }
-
-    return isValid;
-  }
-
   function validateAllSteps() {
     let isValid = true;
+    const errors = [];
     
     for (let step = 1; step <= totalSteps; step++) {
       const section = document.getElementById(`section${step}`);
       const requiredInputs = section.querySelectorAll('[required]');
       
       requiredInputs.forEach(input => {
-        if (!validateField(input)) {
+        if (!validateField(input, errors)) {
           isValid = false;
         }
       });
     }
 
+    // Check subnominations
+    const subnominationsChecked = document.querySelectorAll('input[name="subnominations"]:checked');
+    if (subnominationsChecked.length === 0) {
+      isValid = false;
+      errors.push('Выберите хотя бы одну подноминацию');
+      document.getElementById('subnominationsError').textContent = 'Выберите хотя бы одну подноминацию';
+    } else {
+      document.getElementById('subnominationsError').textContent = '';
+    }
+
+    // Check biography length
+    const bio = document.getElementById('biography');
+    if (bio && bio.value.length < 500) {
+      isValid = false;
+      errors.push('Автобиография должна содержать не менее 500 символов (сейчас: ' + bio.value.length + ')');
+    }
+
+    if (!isValid) {
+      showFullErrorSummary(errors);
+    }
+
     return isValid;
   }
 
-  function validateField(input) {
+  function validateField(input, errors = []) {
     const value = input.type === 'checkbox' || input.type === 'radio' 
       ? input.checked 
       : input.value.trim();
 
-    if (!value) {
+    if (!value && input.required) {
       input.classList.add('error');
       showFieldError(input, 'Это поле обязательно для заполнения');
+      errors.push(getFieldLabel(input) + ' не заполнено');
       return false;
     }
 
-    if (input.type === 'email' && !isValidEmail(value)) {
+    if (input.type === 'email' && value && !isValidEmail(value)) {
       input.classList.add('error');
       showFieldError(input, 'Введите корректный email');
-      return false;
-    }
-
-    if (input.type === 'tel' && !isValidPhone(value)) {
-      input.classList.add('error');
-      showFieldError(input, 'Введите корректный номер телефона');
+      errors.push('Некорректный email');
       return false;
     }
 
@@ -257,10 +251,6 @@
 
   function isValidEmail(email) {
     return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-  }
-
-  function isValidPhone(phone) {
-    return phone.replace(/[\s\-\(\)]/g, '').length >= 10;
   }
 
   function getFieldLabel(input) {
@@ -282,23 +272,16 @@
     }
   }
 
-  function showSectionErrors(errors) {
-    // Errors are shown inline
-  }
-
-  function showErrorSummary() {
-    const errors = [];
-    
-    form.querySelectorAll('[required]').forEach(input => {
-      if (!input.value.trim() && !(input.type === 'checkbox' && !input.checked)) {
-        errors.push(getFieldLabel(input) + ' не заполнено');
-      }
-    });
-
+  function showFullErrorSummary(errors) {
     if (errors.length > 0) {
       errorList.innerHTML = errors.map(e => `<li>${e}</li>`).join('');
       errorSummary.style.display = 'block';
+      errorSummary.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
+  }
+
+  function showErrorSummary() {
+    errorSummary.style.display = 'block';
   }
 
   function scrollToFirstError() {
@@ -418,7 +401,7 @@
     if (bioInput && charCount && counter) {
       bioInput.addEventListener('input', () => {
         const count = bioInput.value.length;
-        charCount.textContent = count;
+        charCount.textContent = count.toLocaleString('ru-RU');
 
         if (count >= 500) {
           counter.classList.add('valid');
@@ -575,30 +558,55 @@
       });
     });
 
-    // Phone mask
+    // Phone mask - ИСПРАВЛЕННАЯ ВЕРСИЯ
     const phoneInputs = form.querySelectorAll('input[type="tel"]');
     phoneInputs.forEach(input => {
       input.addEventListener('input', (e) => {
         let value = e.target.value.replace(/\D/g, '');
+        
+        // Remove leading 7 or 8
         if (value.startsWith('7')) {
           value = value.slice(1);
+        } else if (value.startsWith('8')) {
+          value = value.slice(1);
         }
+        
+        // Limit to 10 digits
         if (value.length > 10) {
           value = value.slice(0, 10);
         }
+        
+        // Format: +7 (XXX) XXX-XX-XX
         if (value.length > 0) {
-          value = '+7 (' + value.slice(0, 3);
-          if (value.length > 6) {
-            value = value.slice(0, 6) + ') ' + value.slice(6, 9);
+          let formatted = '+7';
+          if (value.length > 0) {
+            formatted += ' (' + value.slice(0, 3);
           }
-          if (value.length > 11) {
-            value = value.slice(0, 11) + '-' + value.slice(11, 13);
+          if (value.length >= 3) {
+            formatted += ') ' + value.slice(3, 6);
           }
-          if (value.length > 14) {
-            value = value.slice(0, 14) + '-' + value.slice(14, 16);
+          if (value.length >= 6) {
+            formatted += '-' + value.slice(6, 8);
           }
+          if (value.length >= 8) {
+            formatted += '-' + value.slice(8, 10);
+          }
+          e.target.value = formatted;
+        } else {
+          e.target.value = '';
         }
-        e.target.value = value;
+      });
+
+      // Allow backspace and delete
+      input.addEventListener('keydown', (e) => {
+        // Allow: backspace, delete, tab, escape, enter
+        if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1) {
+          return;
+        }
+        // Allow: Ctrl+A, Command+A
+        if ((e.keyCode === 65 && (e.ctrlKey === true || e.metaKey === true))) {
+          return;
+        }
       });
     });
   }

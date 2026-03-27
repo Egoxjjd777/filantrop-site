@@ -153,6 +153,16 @@ body {
   flex: 1;
   position: relative;
   z-index: 1;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.step:hover {
+  transform: scale(1.05);
+}
+
+.step:hover .step-circle {
+  box-shadow: 0 0 0 4px var(--color-primary)/30;
 }
 
 .step-circle {
