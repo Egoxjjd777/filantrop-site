@@ -1,0 +1,24 @@
+# Игнорируем системные файлы
+.DS_Store
+Thumbs.db
+
+# Логи
+*.log
+
+# Временные файлы
+*.tmp
+*.swp
+
+# Редакторы
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Node.js (если будете использовать)
+node_modules/
+package-lock.json
+
+# Next.js (если будете использовать полную версию)
+.next/
+out/
